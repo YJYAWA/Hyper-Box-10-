@@ -1,0 +1,26 @@
+{
+  "name": "hyper-box",
+  "version": "3.0.2",
+  "description": "Hyper Box - reconstructed from toolsbox3.0.2.rpk",
+  "private": true,
+  "engines": {
+    "node": ">=8.10"
+  },
+  "scripts": {
+    "start": "aiot server --watch",
+    "prebuild": "node tools/patch-toolkit.js",
+    "build": "aiot build --enable-jsc --enable-custom-component",
+    "prerelease": "node tools/patch-toolkit.js",
+    "release": "aiot release --enable-jsc --enable-custom-component",
+    "server": "aiot server",
+    "watch": "aiot watch",
+    "graft": "aiot release --enable-jsc --enable-custom-component && python tools/graft.py dist/com.charlie.hyperbox.release.3.0.2.rpk extracted dist/hyperbox-grafted.rpk && aiot resign --file dist/hyperbox-grafted.rpk --sign sign --dest dest/grafted",
+    "resign:original": "aiot resign --file toolsbox3.0.2.rpk --sign sign --dest dest/original"
+  },
+  "devDependencies": {
+    "@aiot-toolkit/jsc": "^1.0.9",
+    "aiot-toolkit": "1.1.4",
+    "less": "^4.1.1",
+    "less-loader": "^10.0.1"
+  }
+}
